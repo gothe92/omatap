@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "gothe92.omatap",
+  "name": "Omatap",
+  "version": "1.0.0",
+  "author": "Andras",
+  "license": "MIT",
+  "description": "Keyboard-driven clicking with 2-letter screen hints.",
+  "kinds": [
+    "overlay",
+    "bar-widget"
+  ],
+  "keepLoaded": true,
+  "entryPoints": {
+    "overlay": "Overlay.qml",
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "Omatap",
+    "description": "Click with keyboard hints",
+    "category": "Productivity",
+    "allowMultiple": false,
+    "defaultSection": "right"
+  }
+}
