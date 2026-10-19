@@ -6,22 +6,39 @@ Keyboard-driven clicking for Omarchy: every spot on the screen gets a 2-letter h
 
 ## Requirements
 
-- `python-evdev`
+- Omarchy Quattro (Hyprland + omarchy-shell)
+- `python` and `python-evdev`
 - Write access to `/dev/uinput` (granted to the logged-in seat user by default; otherwise add an udev rule or join the `input` group)
 
 ## Install
 
 ```bash
-cp -r . ~/.config/omarchy/plugins/gothe92.omatap
-omarchy-shell shell rescanPlugins
-omarchy plugin enable gothe92.omatap
+omarchy plugin add https://github.com/gothe92/omatap --enable
 ```
 
-Bind it in `~/.config/hypr/bindings.lua`:
+Bind it in `~/.config/hypr/bindings.lua` (`code:47` is the key right of `L`: `;` on US, `É` on Hungarian):
+
+```lua
+o.bind("SUPER + code:47", "Omatap", "omarchy-shell shell toggle gothe92.omatap '{}'")
+```
+
+## Update
 
 ```bash
-omarchy-shell shell toggle gothe92.omatap '{}'
+omarchy plugin update gothe92.omatap
+omarchy-restart-shell
 ```
+
+The overlay stays loaded, so the shell restart is needed for the new version to take effect.
+
+## Remove
+
+```bash
+omarchy plugin remove gothe92.omatap
+rm -rf ~/.local/state/omatap
+```
+
+Delete the `Omatap` line from `~/.config/hypr/bindings.lua`. The background click daemon exits on its own after 10 idle minutes.
 
 ## Keys
 
