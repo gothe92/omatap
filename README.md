@@ -4,6 +4,8 @@ Keyboard-driven clicking for Omarchy: every spot on the screen gets a 2-letter h
 
 ![Omatap](preview.png)
 
+▶ [Demo video](demo.mp4) (31 s): precision click, scroll and right click on omarchy.org
+
 ## Requirements
 
 - Omarchy Quattro (Hyprland + omarchy-shell)
@@ -54,7 +56,7 @@ Delete the `Omatap` line from `~/.config/hypr/bindings.lua`. The background clic
 | `Backspace` | Clear prefix |
 | `Esc` | Back / close |
 
-Punctuation keys are matched by position, so on Hungarian layout they are `É` `Á` `,` `.` and `Ő` `Ú`.
+Punctuation keys work by character or by position, so on Hungarian layout `É` `Á` `,` `.` `Ő` `Ú` also work.
 
 The click daemon exits after 10 minutes idle; errors are logged to `~/.local/state/omatap/daemon.log`.
 

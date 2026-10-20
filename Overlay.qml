@@ -32,8 +32,8 @@ Item {
   readonly property int gridCols: 13
   readonly property int gridRows: 12
   readonly property string subGridKeys: "QWEASDZXC"
-  // Mode keys match physical positions (xkb keycodes of the US ; ' , . [ ]) so they
-  // sit in the same place on any layout, e.g. É Á , . Ő Ú on Hungarian
+  // Mode keys match the US ; ' , . [ ] by physical position (xkb keycode), so they sit in
+  // the same place on any layout (É Á , . Ő Ú on Hungarian), or by the typed character
   readonly property var keycodes: ({ semicolon: 47, apostrophe: 48, comma: 59, period: 60, bracketLeft: 34, bracketRight: 35 })
 
   // Theme-driven palette: the [menu] section of the active theme's shell.toml
@@ -309,27 +309,27 @@ Item {
         if (event.key === Qt.Key_F1 || ((event.modifiers & Qt.ControlModifier) && event.key === Qt.Key_L)) {
           root.clickMode = "left"; event.accepted = true; return
         }
-        if (event.key === Qt.Key_F2 || ((event.modifiers & Qt.ControlModifier) && event.key === Qt.Key_R) || event.nativeScanCode === root.keycodes.semicolon) {
+        if (event.key === Qt.Key_F2 || ((event.modifiers & Qt.ControlModifier) && event.key === Qt.Key_R) || (event.nativeScanCode === root.keycodes.semicolon || event.text === ";")) {
           root.clickMode = (root.clickMode === "right") ? "left" : "right"
           event.accepted = true; return
         }
-        if (event.key === Qt.Key_F3 || ((event.modifiers & Qt.ControlModifier) && event.key === Qt.Key_D) || event.nativeScanCode === root.keycodes.apostrophe) {
+        if (event.key === Qt.Key_F3 || ((event.modifiers & Qt.ControlModifier) && event.key === Qt.Key_D) || (event.nativeScanCode === root.keycodes.apostrophe || event.text === "'")) {
           root.clickMode = (root.clickMode === "double") ? "left" : "double"
           event.accepted = true; return
         }
-        if (event.key === Qt.Key_F4 || ((event.modifiers & Qt.ControlModifier) && event.key === Qt.Key_M) || event.nativeScanCode === root.keycodes.comma) {
+        if (event.key === Qt.Key_F4 || ((event.modifiers & Qt.ControlModifier) && event.key === Qt.Key_M) || (event.nativeScanCode === root.keycodes.comma || event.text === ",")) {
           root.clickMode = (root.clickMode === "middle") ? "left" : "middle"
           event.accepted = true; return
         }
-        if (event.key === Qt.Key_F5 || ((event.modifiers & Qt.ControlModifier) && event.key === Qt.Key_G) || event.nativeScanCode === root.keycodes.period) {
+        if (event.key === Qt.Key_F5 || ((event.modifiers & Qt.ControlModifier) && event.key === Qt.Key_G) || (event.nativeScanCode === root.keycodes.period || event.text === ".")) {
           root.clickMode = (root.clickMode === "move") ? "left" : "move"
           event.accepted = true; return
         }
-        if (event.nativeScanCode === root.keycodes.bracketLeft) {
+        if ((event.nativeScanCode === root.keycodes.bracketLeft || event.text === "[")) {
           root.clickMode = (root.clickMode === "scroll-up") ? "left" : "scroll-up"
           event.accepted = true; return
         }
-        if (event.nativeScanCode === root.keycodes.bracketRight) {
+        if ((event.nativeScanCode === root.keycodes.bracketRight || event.text === "]")) {
           root.clickMode = (root.clickMode === "scroll-down") ? "left" : "scroll-down"
           event.accepted = true; return
         }
